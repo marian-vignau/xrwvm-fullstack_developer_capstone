@@ -1,7 +1,6 @@
 # Uncomment the required imports before adding the code
 
 from django.contrib.auth.models import User
-from django.shortcuts import render
 from django.contrib.auth import logout
 
 from django.http import JsonResponse
@@ -71,7 +70,7 @@ def registration(request):
         # Check if user already exists
         User.objects.get(username=username)
         username_exist = True
-    except Exception as err:
+    except Exception:
         logger.debug("{} is new user".format(username))
 
     # If it is a new user
@@ -91,7 +90,6 @@ def registration(request):
     else:
         data = {"userName": username, "error": "Already Registered"}
         return JsonResponse(data)
-
 
 
 # # Update the `get_dealerships` view to render the index page with
